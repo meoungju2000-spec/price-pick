@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRICE PICK</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      background: #f6f6f6;
+      color: #111;
+    }
+
+    .app {
+      max-width: 430px;
+      min-height: 100vh;
+      margin: auto;
+      background: white;
+      padding: 28px 22px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .sub {
+      margin-top: 5px;
+      font-size: 13px;
+      color: #888;
+    }
+
+    h1 {
+      margin-top: 55px;
+      font-size: 28px;
+      line-height: 1.35;
+      letter-spacing: -1.5px;
+    }
+
+    .description {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .tabs {
+      display: flex;
+      background: #f2f2f2;
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 15px;
+    }
+
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 11px;
+      border-radius: 9px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .tab.active {
+      background: white;
+      font-weight: 700;
+      box-shadow: 0 1px 5px rgba(0,0,0,.08);
+    }
+
+    input {
+      width: 100%;
+      padding: 17px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #111;
+    }
+
+    .helper {
+      font-size: 12px;
+      color: #999;
+      margin: 9px 3px 18px;
+    }
+
+    .chips {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+
+    .chip {
+      border: 1px solid #e4e4e4;
+      border-radius: 100px;
+      padding: 8px 11px;
+      font-size: 12px;
+      cursor: pointer;
+      background: white;
+    }
+
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 13px;
+      padding: 17px;
+      background: #111;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .platform-title {
+      margin-top: 45px;
+      color: #999;
+      font-size: 12px;
+    }
+
+    .platforms {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .platform {
+      flex: 1;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 14px 5px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .notice {
+      margin-top: 30px;
+      background: #fafafa;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 11px;
+      color: #888;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="logo">PRICE PICK</div>
+  <div class="sub">AI 패션 최저가 비교</div>
+
+  <h1>
+    사고 싶은 상품,<br>
+    어디가 제일 저렴할까요?
+  </h1>
+
+  <div class="description">
+    상품명이나 URL을 입력하면<br>
+    무신사 · 29CM · W컨셉의 예상 실구매가를 비교해드려요.
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="changeTab('product', this)">
+      상품명 입력
+    </div>
+    <div class="tab" onclick="changeTab('url', this)">
+      URL 입력
+    </div>
+  </div>
+
+  <input
+    id="searchInput"
+    placeholder="예: Matin Kim accordion wallet"
+  >
+
+  <div class="helper" id="helper">
+    브랜드명과 상품 특징을 함께 입력하면 더 정확해요.
+  </div>
+
+  <div class="chips" id="chips">
+    <div class="chip" onclick="pick(this)">Matin Kim accordion wallet</div>
+    <div class="chip" onclick="pick(this)">Mardi Mercredi sweatshirt</div>
+    <div class="chip" onclick="pick(this)">마뗑킴 버클백</div>
+  </div>
+
+  <button onclick="comparePrice()">
+    가격 비교하기
+  </button>
+
+  <div class="platform-title">
+    비교하는 쇼핑몰
+  </div>
+
+  <div class="platforms">
+    <div class="platform">MUSINSA</div>
+    <div class="platform">29CM</div>
+    <div class="platform">W CONCEPT</div>
+  </div>
+
+  <div class="notice">
+    신규 가입 · 첫 구매 · 개인 보유 쿠폰은 제외하고
+    일반 쿠폰과 배송비 기준으로 계산합니다.
+  </div>
+
+</div>
+
+<script>
+
+let mode = "product";
+
+function changeTab(type, element) {
+
+  mode = type;
+
+  document.querySelectorAll(".tab")
+    .forEach(tab => tab.classList.remove("active"));
+
+  element.classList.add("active");
+
+  const input = document.getElementById("searchInput");
+  const helper = document.getElementById("helper");
+  const chips = document.getElementById("chips");
+
+  if(type === "url") {
+
+    input.placeholder = "상품 URL을 붙여넣어 주세요";
+
+    helper.innerText =
+      "무신사, 29CM, W컨셉 상품 URL을 입력해 주세요.";
+
+    chips.style.display = "none";
+
+  } else {
+
+    input.placeholder =
+      "예: Matin Kim accordion wallet";
+
+    helper.innerText =
+      "브랜드명과 상품 특징을 함께 입력하면 더 정확해요.";
+
+    chips.style.display = "flex";
+  }
+}
+
+function pick(element) {
+  document.getElementById("searchInput").value =
+    element.innerText;
+}
+
+function comparePrice() {
+
+  const value =
+    document.getElementById("searchInput").value.trim();
+
+  if(!value) {
+    alert("상품명 또는 URL을 입력해 주세요.");
+    return;
+  }
+
+  alert("좋아! 다음 단계에서 실제 가격 비교 결과 화면을 연결할 거예요.");
+}
+
+</script>
+
+</body>
+</html>
