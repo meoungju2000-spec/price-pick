@@ -14,15 +14,15 @@
     body {
       margin: 0;
       font-family: Arial, "Noto Sans KR", sans-serif;
-      background: #f6f6f6;
+      background: #f5f5f5;
       color: #111;
     }
 
     .app {
       max-width: 430px;
       min-height: 100vh;
-      margin: auto;
-      background: white;
+      margin: 0 auto;
+      background: #fff;
       padding: 28px 22px 60px;
     }
 
@@ -39,38 +39,39 @@
     }
 
     h1 {
-      margin-top: 55px;
-      font-size: 28px;
+      margin-top: 52px;
+      font-size: 29px;
       line-height: 1.35;
       letter-spacing: -1.5px;
     }
 
     .description {
+      margin-top: 12px;
+      margin-bottom: 26px;
       color: #666;
       font-size: 14px;
       line-height: 1.7;
-      margin-bottom: 30px;
     }
 
     .supported {
       display: flex;
       gap: 7px;
-      margin-bottom: 20px;
       flex-wrap: wrap;
+      margin-bottom: 24px;
     }
 
     .supported-item {
       padding: 7px 10px;
-      background: #f5f5f5;
+      background: #f4f4f4;
       border-radius: 100px;
       font-size: 11px;
       font-weight: 700;
     }
 
     .url-label {
+      margin-bottom: 9px;
       font-size: 13px;
       font-weight: 800;
-      margin-bottom: 9px;
     }
 
     input {
@@ -87,9 +88,9 @@
     }
 
     .helper {
-      font-size: 12px;
-      color: #999;
       margin: 9px 3px 20px;
+      color: #999;
+      font-size: 12px;
       line-height: 1.5;
     }
 
@@ -100,11 +101,11 @@
 
     .main-button {
       width: 100%;
-      border: 0;
-      border-radius: 13px;
       padding: 17px;
+      border: none;
+      border-radius: 13px;
       background: #111;
-      color: white;
+      color: #fff;
       font-size: 16px;
       font-weight: 800;
       cursor: pointer;
@@ -112,34 +113,20 @@
 
     .secondary-button {
       width: 100%;
+      margin-top: 9px;
+      padding: 15px;
       border: 1px solid #ddd;
       border-radius: 13px;
-      padding: 15px;
-      background: white;
+      background: #fff;
       color: #111;
       font-size: 14px;
       font-weight: 700;
-      margin-top: 9px;
       cursor: pointer;
-    }
-
-    .shop-link {
-      display: block;
-      width: 100%;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 13px;
-      padding: 15px;
-      background: #111;
-      color: white;
-      font-size: 14px;
-      font-weight: 800;
-      margin-top: 13px;
     }
 
     .loading-area {
       display: none;
-      margin-top: 35px;
+      margin-top: 40px;
       padding: 35px 10px;
       text-align: center;
     }
@@ -147,11 +134,11 @@
     .spinner {
       width: 36px;
       height: 36px;
+      margin: 0 auto 18px;
       border: 4px solid #eee;
       border-top: 4px solid #111;
       border-radius: 50%;
-      margin: 0 auto 18px;
-      animation: spin .8s linear infinite;
+      animation: spin 0.8s linear infinite;
     }
 
     @keyframes spin {
@@ -167,8 +154,8 @@
 
     .loading-description {
       margin-top: 8px;
-      font-size: 12px;
       color: #888;
+      font-size: 12px;
       line-height: 1.6;
     }
 
@@ -176,9 +163,9 @@
       display: none;
       margin-top: 20px;
       padding: 15px;
-      background: #fff4f4;
-      color: #c73535;
       border-radius: 12px;
+      background: #fff1f1;
+      color: #c73535;
       font-size: 13px;
       line-height: 1.5;
     }
@@ -191,47 +178,37 @@
     .section-title {
       font-size: 21px;
       font-weight: 900;
-      letter-spacing: -.5px;
+      letter-spacing: -0.5px;
     }
 
     .section-description {
       margin-top: 7px;
       margin-bottom: 18px;
-      font-size: 13px;
       color: #777;
+      font-size: 13px;
       line-height: 1.6;
     }
 
     .product-card {
+      overflow: hidden;
       border: 1px solid #e6e6e6;
       border-radius: 18px;
-      overflow: hidden;
-      background: white;
+      background: #fff;
     }
 
     .product-image-area {
       position: relative;
       width: 100%;
       aspect-ratio: 1 / 1;
-      background: #f5f5f5;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: #f5f5f5;
     }
 
     .product-image {
-      display: block;
       width: 100%;
       height: 100%;
+      display: block;
       object-fit: cover;
-    }
-
-    .image-placeholder {
-      color: #aaa;
-      font-size: 13px;
-      text-align: center;
-      padding: 20px;
     }
 
     .source-badge {
@@ -240,8 +217,8 @@
       left: 13px;
       padding: 7px 10px;
       border-radius: 100px;
-      background: rgba(0,0,0,.78);
-      color: white;
+      background: rgba(0, 0, 0, 0.78);
+      color: #fff;
       font-size: 10px;
       font-weight: 800;
     }
@@ -251,8 +228,8 @@
     }
 
     .brand {
-      font-size: 12px;
       color: #777;
+      font-size: 12px;
       font-weight: 800;
     }
 
@@ -263,23 +240,17 @@
       font-weight: 900;
     }
 
-    .product-price {
-      margin-top: 15px;
-      font-size: 21px;
-      font-weight: 900;
-    }
-
-    .price-note {
-      margin-top: 4px;
-      font-size: 11px;
+    .product-code {
+      margin-top: 8px;
       color: #999;
+      font-size: 12px;
     }
 
     .confirm-question {
       margin-top: 18px;
       padding: 15px;
-      background: #f7f7f7;
       border-radius: 12px;
+      background: #f7f7f7;
       text-align: center;
       font-size: 14px;
       font-weight: 800;
@@ -295,10 +266,10 @@
     }
 
     .result-summary {
-      padding: 17px;
-      background: #f7f7f7;
-      border-radius: 14px;
       margin-bottom: 20px;
+      padding: 18px;
+      border-radius: 15px;
+      background: #f7f7f7;
     }
 
     .result-summary strong {
@@ -307,31 +278,33 @@
 
     .result-summary p {
       margin: 7px 0 0;
-      font-size: 12px;
       color: #666;
+      font-size: 12px;
       line-height: 1.6;
     }
 
     .result-card {
-      border: 1px solid #e7e7e7;
-      border-radius: 17px;
-      padding: 18px;
       margin-bottom: 12px;
+      padding: 18px;
+      border: 1px solid #e5e5e5;
+      border-radius: 17px;
+      background: #fff;
     }
 
-    .result-card.best {
-      border: 2px solid #111;
+    .result-card.found {
+      border-color: #ccc;
     }
 
-    .best-badge {
-      display: inline-block;
-      padding: 5px 8px;
-      margin-bottom: 11px;
-      background: #111;
-      color: white;
-      border-radius: 100px;
-      font-size: 10px;
-      font-weight: 800;
+    .result-card.not-found {
+      background: #fafafa;
+      opacity: 0.72;
+    }
+
+    .platform-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
     }
 
     .platform-name {
@@ -339,52 +312,107 @@
       font-weight: 900;
     }
 
+    .status-badge {
+      padding: 5px 8px;
+      border-radius: 100px;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .status-found {
+      background: #111;
+      color: #fff;
+    }
+
+    .status-not-found {
+      background: #eee;
+      color: #777;
+    }
+
+    .match-reason {
+      margin-top: 9px;
+      color: #777;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .result-product-name {
+      margin-top: 14px;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .result-code {
+      margin-top: 5px;
+      color: #999;
+      font-size: 11px;
+    }
+
+    .price-area {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid #eee;
+    }
+
     .price-row {
       display: flex;
       justify-content: space-between;
-      margin-top: 10px;
-      font-size: 13px;
       gap: 20px;
+      margin-top: 7px;
+      font-size: 12px;
     }
 
     .price-label {
       color: #777;
     }
 
-    .final-price-box {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid #eee;
-      margin-top: 15px;
-      padding-top: 15px;
+    .price-value {
+      font-weight: 700;
     }
 
-    .final-label {
+    .shop-link {
+      display: block;
+      width: 100%;
+      margin-top: 15px;
+      padding: 14px;
+      border-radius: 12px;
+      background: #111;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .disabled-link {
+      display: block;
+      width: 100%;
+      margin-top: 15px;
+      padding: 14px;
+      border-radius: 12px;
+      background: #eee;
+      color: #999;
+      text-align: center;
       font-size: 13px;
       font-weight: 700;
     }
 
-    .final-price {
-      font-size: 21px;
-      font-weight: 900;
-    }
-
-    .sample-notice {
+    .notice {
       margin-top: 20px;
       padding: 14px;
-      background: #fffbea;
       border-radius: 12px;
-      font-size: 11px;
+      background: #fffbea;
       color: #806d27;
+      font-size: 11px;
       line-height: 1.6;
     }
 
     .bottom-notice {
       margin-top: 40px;
       padding: 14px;
-      background: #fafafa;
       border-radius: 12px;
+      background: #fafafa;
       color: #888;
       font-size: 11px;
       line-height: 1.6;
@@ -401,37 +429,28 @@
   </div>
 
   <div class="sub">
-    AI 패션 최저가 비교
+    링크 하나로 찾는 패션 가격 비교
   </div>
 
   <h1>
     상품 링크 하나로,<br>
-    최저가를 찾아보세요.
+    같은 상품을 찾아보세요.
   </h1>
 
   <div class="description">
-    사고 싶은 상품의 URL을 붙여넣으면<br>
-    상품을 확인한 뒤 다른 쇼핑몰의 가격을 비교해드려요.
+    사고 싶은 상품 링크를 붙여넣으면<br>
+    공식몰과 주요 플랫폼의 동일 상품을 찾아드려요.
   </div>
 
   <div class="supported">
-
-    <div class="supported-item">
-      MUSINSA
-    </div>
-
-    <div class="supported-item">
-      29CM
-    </div>
-
-    <div class="supported-item">
-      W CONCEPT
-    </div>
-
+    <div class="supported-item">MUSINSA</div>
+    <div class="supported-item">29CM</div>
+    <div class="supported-item">W CONCEPT</div>
+    <div class="supported-item">공식몰</div>
   </div>
 
   <div class="url-label">
-    상품 URL
+    상품 링크
   </div>
 
   <input
@@ -441,7 +460,7 @@
   >
 
   <div class="helper">
-    무신사 · 29CM · W컨셉 상품 URL을 입력해 주세요.
+    현재 테스트 단계에서는 무신사 · 29CM · W컨셉 상품 링크를 인식합니다.
   </div>
 
   <button
@@ -453,23 +472,26 @@
 
   <div id="errorArea"></div>
 
+
+  <!-- 상품 확인 로딩 -->
+
   <div
     class="loading-area"
     id="productLoading"
   >
-
     <div class="spinner"></div>
 
     <div class="loading-title">
-      상품 정보를 확인하고 있어요
+      상품을 확인하고 있어요
     </div>
 
     <div class="loading-description">
-      PRICE PICK 백엔드에서<br>
-      상품 URL을 분석하고 있어요.
+      입력한 링크에서 상품 정보를 확인하고 있어요.
     </div>
-
   </div>
+
+
+  <!-- 상품 확인 -->
 
   <div id="confirmArea">
 
@@ -478,30 +500,18 @@
     </div>
 
     <div class="section-description">
-      가격 비교를 시작하기 전에<br>
-      입력한 상품을 확인해 주세요.
+      맞다면 동일 상품 판매처를 찾아볼게요.
     </div>
 
     <div class="product-card">
 
-      <div
-        class="product-image-area"
-        id="productImageArea"
-      >
+      <div class="product-image-area">
 
         <img
           id="productImage"
           class="product-image"
           alt="상품 이미지"
         >
-
-        <div
-          id="imagePlaceholder"
-          class="image-placeholder"
-          style="display:none;"
-        >
-          상품 이미지는 아직 자동으로 가져오지 못했어요.
-        </div>
 
         <div
           class="source-badge"
@@ -525,31 +535,16 @@
         ></div>
 
         <div
-          class="product-price"
-          id="productPrice"
+          class="product-code"
+          id="productCode"
         ></div>
-
-        <div
-          class="price-note"
-          id="priceNote"
-        >
-        </div>
-
-        <a
-          id="originalProductLink"
-          class="shop-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          상품 페이지에서 보기
-        </a>
 
       </div>
 
     </div>
 
     <div class="confirm-question">
-      이 상품의 가격을 비교할까요?
+      이 상품의 판매처를 비교할까요?
     </div>
 
     <div class="confirm-buttons">
@@ -565,12 +560,15 @@
         class="secondary-button"
         onclick="retryURL()"
       >
-        아니에요, 다른 링크를 입력할게요
+        다른 링크 입력하기
       </button>
 
     </div>
 
   </div>
+
+
+  <!-- 비교 로딩 -->
 
   <div
     class="loading-area"
@@ -584,20 +582,24 @@
     </div>
 
     <div class="loading-description">
-      무신사 · 29CM · W컨셉에서<br>
-      동일 상품을 비교할 준비를 하고 있어요.
+      무신사 · 29CM · W컨셉 · 공식몰을 확인하고 있어요.
     </div>
 
   </div>
 
+
+  <!-- 결과 -->
+
   <div id="resultArea"></div>
 
+
   <div class="bottom-notice">
-    신규 가입 · 첫 구매 · 개인 보유 쿠폰은 제외하고
-    일반 쿠폰과 배송비를 기준으로 예상 실구매가를 계산할 예정입니다.
+    PRICE PICK은 현재 MVP 테스트 단계입니다.
+    가격 · 쿠폰 · 배송비 실시간 비교 기능은 다음 단계에서 추가됩니다.
   </div>
 
 </div>
+
 
 <script>
 
@@ -605,6 +607,7 @@
     "https://price-pick-api.meoungju2000.workers.dev";
 
   let currentProduct = null;
+  let currentUrl = "";
 
 
   /* =========================
@@ -613,19 +616,18 @@
 
   async function checkProduct() {
 
+    hideAll();
+
     const input =
       document.getElementById("urlInput");
 
     const productUrl =
       input.value.trim();
 
-    hideAll();
-
     if (!productUrl) {
       showError(
-        "상품 URL을 붙여넣어 주세요."
+        "상품 링크를 붙여넣어 주세요."
       );
-
       return;
     }
 
@@ -634,22 +636,21 @@
     }
     catch {
       showError(
-        "올바른 URL을 입력해 주세요."
+        "올바른 상품 링크를 입력해 주세요."
       );
-
       return;
     }
 
+    currentUrl =
+      productUrl;
+
     const loading =
-      document.getElementById("productLoading");
+      document.getElementById(
+        "productLoading"
+      );
 
     loading.style.display =
       "block";
-
-    loading.scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
 
     try {
 
@@ -665,6 +666,7 @@
         "none";
 
       if (!response.ok || !data.ok) {
+
         showError(
           data.error ||
           "상품 정보를 확인하지 못했습니다."
@@ -686,37 +688,20 @@
       loading.style.display =
         "none";
 
-      showError(
-        "백엔드 연결 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요."
-      );
-
       console.error(error);
+
+      showError(
+        "백엔드 연결 중 오류가 발생했습니다."
+      );
     }
   }
 
 
   /* =========================
-     상품 표시
+     기준 상품 화면
   ========================= */
 
   function showProduct(product) {
-
-    const brand =
-      product.brand ||
-      product.platform ||
-      "상품";
-
-    const productName =
-      product.productName ||
-      (
-        product.productId
-          ? `상품번호 ${product.productId}`
-          : "입력한 상품"
-      );
-
-    const formattedPrice =
-      product.formattedPrice ||
-      "가격 확인 필요";
 
     document.getElementById(
       "sourceBadge"
@@ -727,33 +712,31 @@
     document.getElementById(
       "productBrand"
     ).innerText =
-      brand;
+      product.brand ||
+      product.platform ||
+      "상품";
 
     document.getElementById(
       "productName"
     ).innerText =
-      productName;
+      product.productName ||
+      (
+        product.productId
+          ? `상품번호 ${product.productId}`
+          : "입력한 상품"
+      );
 
     document.getElementById(
-      "productPrice"
+      "productCode"
     ).innerText =
-      formattedPrice;
+      product.productCode
+        ? `상품코드 ${product.productCode}`
+        : "";
 
-    document.getElementById(
-      "priceNote"
-    ).innerText =
-      product.price
-        ? "현재 백엔드에서 확인된 상품 가격"
-        : "현재 자동 가격 조회는 준비 중이에요.";
 
     const image =
       document.getElementById(
         "productImage"
-      );
-
-    const placeholder =
-      document.getElementById(
-        "imagePlaceholder"
       );
 
     if (product.image) {
@@ -764,45 +747,19 @@
       image.style.display =
         "block";
 
-      placeholder.style.display =
-        "none";
-
       image.onerror =
         function () {
           image.style.display =
             "none";
-
-          placeholder.style.display =
-            "block";
         };
 
     }
     else {
 
-      image.removeAttribute(
-        "src"
-      );
-
       image.style.display =
         "none";
-
-      placeholder.style.display =
-        "block";
     }
 
-    const link =
-      document.getElementById(
-        "originalProductLink"
-      );
-
-    link.href =
-      product.purchaseUrl ||
-      product.originalUrl;
-
-    link.innerText =
-      `${platformKoreanName(
-        product.platform
-      )}에서 상품 보기 →`;
 
     const confirmArea =
       document.getElementById(
@@ -820,23 +777,26 @@
 
 
   /* =========================
-     상품 확인 후 비교
+     비교 시작
   ========================= */
 
-  function startComparison() {
+  async function startComparison() {
 
-    if (!currentProduct) {
+    if (!currentUrl) {
+
       showError(
-        "상품 정보가 없습니다. 다시 상품을 확인해 주세요."
+        "상품 링크가 없습니다."
       );
 
       return;
     }
 
+
     document.getElementById(
       "confirmArea"
     ).style.display =
       "none";
+
 
     const loading =
       document.getElementById(
@@ -846,146 +806,302 @@
     loading.style.display =
       "block";
 
-    loading.scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
 
-    setTimeout(() => {
+    try {
+
+      const response =
+        await fetch(
+          `${API_BASE}/compare?url=${encodeURIComponent(currentUrl)}`
+        );
+
+      const data =
+        await response.json();
 
       loading.style.display =
         "none";
 
-      showComparison();
 
-    }, 1000);
+      if (!response.ok || !data.ok) {
+
+        showError(
+          data.error ||
+          "비교 결과를 불러오지 못했습니다."
+        );
+
+        return;
+      }
+
+
+      showComparison(
+        data
+      );
+
+    }
+    catch (error) {
+
+      loading.style.display =
+        "none";
+
+      console.error(error);
+
+      showError(
+        "비교 중 오류가 발생했습니다."
+      );
+    }
   }
 
 
   /* =========================
-     비교 결과
+     비교 결과 표시
   ========================= */
 
-  function showComparison() {
+  function showComparison(data) {
 
     const resultArea =
       document.getElementById(
         "resultArea"
       );
 
-    const platform =
-      currentProduct.platform ||
-      "SHOP";
 
-    const platformLabel =
-      platformKoreanName(
-        platform
-      );
+    const base =
+      data.baseProduct || {};
 
-    const price =
-      currentProduct.formattedPrice ||
-      "가격 확인 필요";
 
-    const purchaseUrl =
-      currentProduct.purchaseUrl ||
-      currentProduct.originalUrl ||
-      "#";
+    let cardsHTML = "";
 
-    resultArea.style.display =
-      "block";
+
+    data.results.forEach(
+      function (item) {
+
+        const found =
+          item.status === "found";
+
+
+        cardsHTML += `
+
+          <div class="
+            result-card
+            ${found ? "found" : "not-found"}
+          ">
+
+            <div class="platform-top">
+
+              <div class="platform-name">
+                ${escapeHTML(
+                  item.displayName ||
+                  item.platform
+                )}
+              </div>
+
+              <div class="
+                status-badge
+                ${
+                  found
+                    ? "status-found"
+                    : "status-not-found"
+                }
+              ">
+
+                ${
+                  found
+                    ? "상품 확인"
+                    : "미확인"
+                }
+
+              </div>
+
+            </div>
+
+
+            <div class="match-reason">
+              ${escapeHTML(
+                item.matchReason || ""
+              )}
+            </div>
+
+
+            ${
+              found
+                ? `
+                  <div class="result-product-name">
+                    ${escapeHTML(
+                      item.productName ||
+                      base.productName ||
+                      "상품명 확인 중"
+                    )}
+                  </div>
+                `
+                : ""
+            }
+
+
+            ${
+              found &&
+              item.productCode
+                ? `
+                  <div class="result-code">
+                    상품코드 ${escapeHTML(
+                      item.productCode
+                    )}
+                  </div>
+                `
+                : ""
+            }
+
+
+            ${
+              found
+                ? `
+                  <div class="price-area">
+
+                    <div class="price-row">
+
+                      <span class="price-label">
+                        상품 가격
+                      </span>
+
+                      <span class="price-value">
+                        ${
+                          item.formattedPrice
+                            ? escapeHTML(
+                                item.formattedPrice
+                              )
+                            : "확인 준비 중"
+                        }
+                      </span>
+
+                    </div>
+
+                    <div class="price-row">
+
+                      <span class="price-label">
+                        쿠폰
+                      </span>
+
+                      <span class="price-value">
+                        확인 준비 중
+                      </span>
+
+                    </div>
+
+                    <div class="price-row">
+
+                      <span class="price-label">
+                        배송비
+                      </span>
+
+                      <span class="price-value">
+                        확인 준비 중
+                      </span>
+
+                    </div>
+
+                  </div>
+                `
+                : ""
+            }
+
+
+            ${
+              found && item.url
+                ? `
+                  <a
+                    class="shop-link"
+                    href="${escapeAttribute(
+                      item.url
+                    )}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    ${escapeHTML(
+                      item.displayName ||
+                      item.platform
+                    )}에서 상품 보기 →
+                  </a>
+                `
+                : `
+                  <div class="disabled-link">
+                    동일 상품을 찾지 못했어요
+                  </div>
+                `
+            }
+
+          </div>
+        `;
+      }
+    );
+
 
     resultArea.innerHTML = `
 
       <div class="section-title">
-        비교 준비가 완료됐어요
+        동일 상품을 확인했어요
       </div>
 
       <div class="section-description">
-        현재 입력한 상품의 실제 연결 정보입니다.
+
+        ${
+          escapeHTML(
+            base.brand || ""
+          )
+        }
+
+        ${
+          base.productName
+            ? " · " +
+              escapeHTML(
+                base.productName
+              )
+            : ""
+        }
+
       </div>
+
 
       <div class="result-summary">
 
         <strong>
-          ${escapeHTML(platformLabel)} 상품을 확인했어요.
+          ${escapeHTML(
+            data.searchedCount
+          )}개 판매처 중
+          ${escapeHTML(
+            data.foundCount
+          )}곳에서 찾았어요.
         </strong>
 
         <p>
-          다음 단계에서는 이 상품을 기준으로
-          다른 쇼핑몰의 동일 상품을 찾아
-          실제 가격 비교 결과를 붙일 거예요.
+          확인된 동일 상품만 보여드리고 있어요.
+          찾지 못한 판매처는 비교에서 제외합니다.
         </p>
 
       </div>
 
-      <div class="result-card best">
 
-        <div class="best-badge">
-          기준 상품
-        </div>
+      ${cardsHTML}
 
-        <div class="platform-name">
-          ${escapeHTML(platform)}
-        </div>
 
-        <div class="price-row">
-
-          <span class="price-label">
-            상품명
-          </span>
-
-          <span>
-            ${escapeHTML(
-              currentProduct.productName ||
-              `상품번호 ${currentProduct.productId || "-"}`
-            )}
-          </span>
-
-        </div>
-
-        <div class="price-row">
-
-          <span class="price-label">
-            현재 가격
-          </span>
-
-          <span>
-            ${escapeHTML(price)}
-          </span>
-
-        </div>
-
-        <div class="final-price-box">
-
-          <span class="final-label">
-            현재 연결
-          </span>
-
-          <span class="final-price">
-            완료
-          </span>
-
-        </div>
-
-        <a
-          class="shop-link"
-          href="${escapeAttribute(purchaseUrl)}"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          ${escapeHTML(platformLabel)}에서 바로 보기 →
-        </a>
-
+      <div class="notice">
+        ${
+          escapeHTML(
+            data.notice ||
+            "실시간 가격 비교 기능은 준비 중입니다."
+          )
+        }
       </div>
 
-      <div class="sample-notice">
 
-        현재는 입력한 원본 쇼핑몰의 상품 연결까지 완료된 상태예요.
-        무신사 · 29CM · W컨셉의 동일 상품 자동 탐색과
-        실구매가 비교는 다음 단계에서 추가합니다.
-
-      </div>
+      <button
+        class="secondary-button"
+        onclick="retryURL()"
+      >
+        다른 상품 비교하기
+      </button>
     `;
+
+
+    resultArea.style.display =
+      "block";
+
 
     resultArea.scrollIntoView({
       behavior: "smooth",
@@ -995,7 +1111,7 @@
 
 
   /* =========================
-     다른 URL 입력
+     다시 검색
   ========================= */
 
   function retryURL() {
@@ -1004,6 +1120,10 @@
 
     currentProduct =
       null;
+
+    currentUrl =
+      "";
+
 
     const input =
       document.getElementById(
@@ -1015,8 +1135,9 @@
 
     input.focus();
 
+
     window.scrollTo({
-      top: 250,
+      top: 200,
       behavior: "smooth"
     });
   }
@@ -1067,6 +1188,7 @@
     ).style.display =
       "none";
 
+
     const resultArea =
       document.getElementById(
         "resultArea"
@@ -1081,73 +1203,23 @@
 
 
   /* =========================
-     플랫폼명
-  ========================= */
-
-  function platformKoreanName(
-    platform
-  ) {
-
-    if (
-      platform === "MUSINSA"
-    ) {
-      return "무신사";
-    }
-
-    if (
-      platform === "29CM"
-    ) {
-      return "29CM";
-    }
-
-    if (
-      platform === "W CONCEPT"
-    ) {
-      return "W컨셉";
-    }
-
-    return platform ||
-      "쇼핑몰";
-  }
-
-
-  /* =========================
      HTML 보호
   ========================= */
 
-  function escapeHTML(
-    value
-  ) {
+  function escapeHTML(value) {
 
     return String(
       value ?? ""
     )
-      .replaceAll(
-        "&",
-        "&amp;"
-      )
-      .replaceAll(
-        "<",
-        "&lt;"
-      )
-      .replaceAll(
-        ">",
-        "&gt;"
-      )
-      .replaceAll(
-        '"',
-        "&quot;"
-      )
-      .replaceAll(
-        "'",
-        "&#039;"
-      );
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
   }
 
 
-  function escapeAttribute(
-    value
-  ) {
+  function escapeAttribute(value) {
 
     return escapeHTML(
       value
