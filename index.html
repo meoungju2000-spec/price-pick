@@ -56,6 +56,7 @@
       display: flex;
       gap: 7px;
       margin-bottom: 20px;
+      flex-wrap: wrap;
     }
 
     .supported-item {
@@ -65,8 +66,6 @@
       font-size: 11px;
       font-weight: 700;
     }
-
-    /* URL 입력 */
 
     .url-label {
       font-size: 13px;
@@ -94,10 +93,8 @@
       line-height: 1.5;
     }
 
-    /* 버튼 */
-
-    button {
-      cursor: pointer;
+    button,
+    a {
       font-family: inherit;
     }
 
@@ -110,10 +107,7 @@
       color: white;
       font-size: 16px;
       font-weight: 800;
-    }
-
-    .main-button:active {
-      transform: scale(.99);
+      cursor: pointer;
     }
 
     .secondary-button {
@@ -126,9 +120,22 @@
       font-size: 14px;
       font-weight: 700;
       margin-top: 9px;
+      cursor: pointer;
     }
 
-    /* 로딩 */
+    .shop-link {
+      display: block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 13px;
+      padding: 15px;
+      background: #111;
+      color: white;
+      font-size: 14px;
+      font-weight: 800;
+      margin-top: 13px;
+    }
 
     .loading-area {
       display: none;
@@ -165,8 +172,6 @@
       line-height: 1.6;
     }
 
-    /* 에러 */
-
     #errorArea {
       display: none;
       margin-top: 20px;
@@ -177,8 +182,6 @@
       font-size: 13px;
       line-height: 1.5;
     }
-
-    /* 상품 확인 */
 
     #confirmArea {
       display: none;
@@ -212,6 +215,9 @@
       aspect-ratio: 1 / 1;
       background: #f5f5f5;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .product-image {
@@ -219,6 +225,13 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    .image-placeholder {
+      color: #aaa;
+      font-size: 13px;
+      text-align: center;
+      padding: 20px;
     }
 
     .source-badge {
@@ -262,15 +275,6 @@
       color: #999;
     }
 
-    .original-link {
-      display: block;
-      margin-top: 15px;
-      color: #777;
-      font-size: 12px;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-
     .confirm-question {
       margin-top: 18px;
       padding: 15px;
@@ -284,8 +288,6 @@
     .confirm-buttons {
       margin-top: 13px;
     }
-
-    /* 가격 비교 결과 */
 
     #resultArea {
       display: none;
@@ -342,6 +344,7 @@
       justify-content: space-between;
       margin-top: 10px;
       font-size: 13px;
+      gap: 20px;
     }
 
     .price-label {
@@ -377,8 +380,6 @@
       line-height: 1.6;
     }
 
-    /* 하단 */
-
     .bottom-notice {
       margin-top: 40px;
       padding: 14px;
@@ -388,15 +389,12 @@
       font-size: 11px;
       line-height: 1.6;
     }
-
   </style>
 </head>
 
 <body>
 
 <div class="app">
-
-  <!-- 상단 -->
 
   <div class="logo">
     PRICE PICK
@@ -406,18 +404,15 @@
     AI 패션 최저가 비교
   </div>
 
-
   <h1>
     상품 링크 하나로,<br>
     최저가를 찾아보세요.
   </h1>
 
-
   <div class="description">
     사고 싶은 상품의 URL을 붙여넣으면<br>
-    다른 쇼핑몰의 동일 상품 가격을 비교해드려요.
+    상품을 확인한 뒤 다른 쇼핑몰의 가격을 비교해드려요.
   </div>
-
 
   <div class="supported">
 
@@ -435,13 +430,9 @@
 
   </div>
 
-
-  <!-- URL 입력 -->
-
   <div class="url-label">
     상품 URL
   </div>
-
 
   <input
     id="urlInput"
@@ -449,11 +440,9 @@
     placeholder="https://www.musinsa.com/products/..."
   >
 
-
   <div class="helper">
-    현재 무신사 · 29CM · W컨셉 상품 링크를 지원할 예정이에요.
+    무신사 · 29CM · W컨셉 상품 URL을 입력해 주세요.
   </div>
-
 
   <button
     class="main-button"
@@ -462,13 +451,7 @@
     상품 확인하기
   </button>
 
-
-  <!-- 오류 -->
-
   <div id="errorArea"></div>
-
-
-  <!-- 상품 검색 로딩 -->
 
   <div
     class="loading-area"
@@ -482,14 +465,11 @@
     </div>
 
     <div class="loading-description">
-      입력한 URL에서<br>
-      상품명과 이미지를 확인하고 있어요.
+      PRICE PICK 백엔드에서<br>
+      상품 URL을 분석하고 있어요.
     </div>
 
   </div>
-
-
-  <!-- 상품 확인 -->
 
   <div id="confirmArea">
 
@@ -499,13 +479,15 @@
 
     <div class="section-description">
       가격 비교를 시작하기 전에<br>
-      찾은 상품이 맞는지 확인해 주세요.
+      입력한 상품을 확인해 주세요.
     </div>
-
 
     <div class="product-card">
 
-      <div class="product-image-area">
+      <div
+        class="product-image-area"
+        id="productImageArea"
+      >
 
         <img
           id="productImage"
@@ -513,12 +495,22 @@
           alt="상품 이미지"
         >
 
-        <div class="source-badge">
+        <div
+          id="imagePlaceholder"
+          class="image-placeholder"
+          style="display:none;"
+        >
+          상품 이미지는 아직 자동으로 가져오지 못했어요.
+        </div>
+
+        <div
+          class="source-badge"
+          id="sourceBadge"
+        >
           MUSINSA
         </div>
 
       </div>
-
 
       <div class="product-info">
 
@@ -527,42 +519,38 @@
           id="productBrand"
         ></div>
 
-
         <div
           class="product-name"
           id="productName"
         ></div>
-
 
         <div
           class="product-price"
           id="productPrice"
         ></div>
 
-
-        <div class="price-note">
-          무신사에서 확인된 현재 표시 가격
+        <div
+          class="price-note"
+          id="priceNote"
+        >
         </div>
-
 
         <a
           id="originalProductLink"
-          class="original-link"
+          class="shop-link"
           target="_blank"
           rel="noopener noreferrer"
         >
-          무신사에서 원본 상품 보기 →
+          상품 페이지에서 보기
         </a>
 
       </div>
 
     </div>
 
-
     <div class="confirm-question">
       이 상품의 가격을 비교할까요?
     </div>
-
 
     <div class="confirm-buttons">
 
@@ -572,7 +560,6 @@
       >
         네, 이 상품이 맞아요
       </button>
-
 
       <button
         class="secondary-button"
@@ -584,9 +571,6 @@
     </div>
 
   </div>
-
-
-  <!-- 가격 비교 로딩 -->
 
   <div
     class="loading-area"
@@ -600,323 +584,286 @@
     </div>
 
     <div class="loading-description">
-      무신사 · 29CM · W컨셉의<br>
-      가격과 혜택을 비교하고 있어요.
+      무신사 · 29CM · W컨셉에서<br>
+      동일 상품을 비교할 준비를 하고 있어요.
     </div>
 
   </div>
 
-
-  <!-- 결과 -->
-
   <div id="resultArea"></div>
 
-
-  <!-- 안내 -->
-
   <div class="bottom-notice">
-
     신규 가입 · 첫 구매 · 개인 보유 쿠폰은 제외하고
-    일반 쿠폰과 배송비를 기준으로 예상 실구매가를 계산합니다.
-
+    일반 쿠폰과 배송비를 기준으로 예상 실구매가를 계산할 예정입니다.
   </div>
 
 </div>
 
-
 <script>
 
-  let currentURL = "";
+  const API_BASE =
+    "https://price-pick-api.meoungju2000.workers.dev";
 
-
-  /*
-   * 현재 첫 번째 실제 테스트 상품
-   *
-   * 다음 단계에서는 이 데이터를
-   * URL에서 자동으로 가져오도록 변경할 예정입니다.
-   */
-
-  const TEST_PRODUCT = {
-
-    id: "3334622",
-
-    platform: "MUSINSA",
-
-    brand: "MATIN KIM",
-
-    name: "MATIN KIM LOGO CROP TOP IN BLACK",
-
-    price: "28,680원",
-
-    image:
-      "https://image.msscdn.net/thumbnails/images/goods_img/20230531/3334622/3334622_17744194996053_big.jpg?w=1200"
-
-  };
+  let currentProduct = null;
 
 
   /* =========================
      상품 확인
   ========================= */
 
-  function checkProduct() {
+  async function checkProduct() {
 
     const input =
       document.getElementById("urlInput");
 
-
-    const url =
+    const productUrl =
       input.value.trim();
-
 
     hideAll();
 
-
-    if (!url) {
-
+    if (!productUrl) {
       showError(
         "상품 URL을 붙여넣어 주세요."
       );
 
       return;
-
     }
-
-
-    /*
-     * URL 형식 확인
-     */
-
-    let parsedURL;
 
     try {
-
-      parsedURL =
-        new URL(url);
-
+      new URL(productUrl);
     }
-
-    catch (error) {
-
+    catch {
       showError(
-        "올바른 상품 URL을 입력해 주세요."
+        "올바른 URL을 입력해 주세요."
       );
 
       return;
-
     }
-
-
-    /*
-     * 현재 MVP 첫 테스트는
-     * MUSINSA URL만 처리
-     */
-
-    const host =
-      parsedURL.hostname
-        .replace("www.", "");
-
-
-    if (
-      host !== "musinsa.com"
-    ) {
-
-      showError(
-        "현재 테스트 버전에서는 무신사 상품 URL부터 지원하고 있어요."
-      );
-
-      return;
-
-    }
-
-
-    /*
-     * 상품 번호 추출
-     *
-     * 예:
-     * /products/3334622
-     */
-
-    const match =
-      parsedURL.pathname.match(
-        /\/products\/(\d+)/
-      );
-
-
-    if (!match) {
-
-      showError(
-        "무신사 상품 URL을 확인해 주세요."
-      );
-
-      return;
-
-    }
-
-
-    const productId =
-      match[1];
-
-
-    currentURL =
-      url;
-
-
-    /*
-     * 아직 자동 상품정보 추출 전이므로
-     * 첫 번째 테스트 상품만 연결
-     */
-
-    if (
-      productId !== TEST_PRODUCT.id
-    ) {
-
-      showError(
-        "현재 첫 테스트 버전에서는 상품번호 3334622를 먼저 테스트하고 있어요. 다음 단계에서 다른 무신사 URL도 자동으로 인식하도록 확장할게요."
-      );
-
-      return;
-
-    }
-
 
     const loading =
-      document.getElementById(
-        "productLoading"
-      );
-
+      document.getElementById("productLoading");
 
     loading.style.display =
       "block";
 
-
     loading.scrollIntoView({
-
       behavior: "smooth",
-
       block: "center"
-
     });
 
+    try {
 
-    setTimeout(() => {
+      const response =
+        await fetch(
+          `${API_BASE}/product?url=${encodeURIComponent(productUrl)}`
+        );
+
+      const data =
+        await response.json();
 
       loading.style.display =
         "none";
 
+      if (!response.ok || !data.ok) {
+        showError(
+          data.error ||
+          "상품 정보를 확인하지 못했습니다."
+        );
 
-      showProduct();
+        return;
+      }
 
-    }, 900);
+      currentProduct =
+        data;
 
+      showProduct(
+        data
+      );
+
+    }
+    catch (error) {
+
+      loading.style.display =
+        "none";
+
+      showError(
+        "백엔드 연결 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요."
+      );
+
+      console.error(error);
+    }
   }
-
 
 
   /* =========================
      상품 표시
   ========================= */
 
-  function showProduct() {
+  function showProduct(product) {
+
+    const brand =
+      product.brand ||
+      product.platform ||
+      "상품";
+
+    const productName =
+      product.productName ||
+      (
+        product.productId
+          ? `상품번호 ${product.productId}`
+          : "입력한 상품"
+      );
+
+    const formattedPrice =
+      product.formattedPrice ||
+      "가격 확인 필요";
 
     document.getElementById(
-      "productImage"
-    ).src =
-      TEST_PRODUCT.image;
-
+      "sourceBadge"
+    ).innerText =
+      product.platform ||
+      "SHOP";
 
     document.getElementById(
       "productBrand"
     ).innerText =
-      TEST_PRODUCT.brand;
-
+      brand;
 
     document.getElementById(
       "productName"
     ).innerText =
-      TEST_PRODUCT.name;
-
+      productName;
 
     document.getElementById(
       "productPrice"
     ).innerText =
-      TEST_PRODUCT.price;
-
+      formattedPrice;
 
     document.getElementById(
-      "originalProductLink"
-    ).href =
-      currentURL;
+      "priceNote"
+    ).innerText =
+      product.price
+        ? "현재 백엔드에서 확인된 상품 가격"
+        : "현재 자동 가격 조회는 준비 중이에요.";
 
+    const image =
+      document.getElementById(
+        "productImage"
+      );
+
+    const placeholder =
+      document.getElementById(
+        "imagePlaceholder"
+      );
+
+    if (product.image) {
+
+      image.src =
+        product.image;
+
+      image.style.display =
+        "block";
+
+      placeholder.style.display =
+        "none";
+
+      image.onerror =
+        function () {
+          image.style.display =
+            "none";
+
+          placeholder.style.display =
+            "block";
+        };
+
+    }
+    else {
+
+      image.removeAttribute(
+        "src"
+      );
+
+      image.style.display =
+        "none";
+
+      placeholder.style.display =
+        "block";
+    }
+
+    const link =
+      document.getElementById(
+        "originalProductLink"
+      );
+
+    link.href =
+      product.purchaseUrl ||
+      product.originalUrl;
+
+    link.innerText =
+      `${platformKoreanName(
+        product.platform
+      )}에서 상품 보기 →`;
 
     const confirmArea =
       document.getElementById(
         "confirmArea"
       );
 
-
     confirmArea.style.display =
       "block";
 
-
     confirmArea.scrollIntoView({
-
       behavior: "smooth",
-
       block: "start"
-
     });
-
   }
 
 
-
   /* =========================
-     상품 확인 → 가격 비교
+     상품 확인 후 비교
   ========================= */
 
   function startComparison() {
+
+    if (!currentProduct) {
+      showError(
+        "상품 정보가 없습니다. 다시 상품을 확인해 주세요."
+      );
+
+      return;
+    }
 
     document.getElementById(
       "confirmArea"
     ).style.display =
       "none";
 
-
     const loading =
       document.getElementById(
         "comparisonLoading"
       );
 
-
     loading.style.display =
       "block";
 
-
     loading.scrollIntoView({
-
       behavior: "smooth",
-
       block: "center"
-
     });
-
 
     setTimeout(() => {
 
       loading.style.display =
         "none";
 
-
       showComparison();
 
-    }, 1300);
-
+    }, 1000);
   }
 
 
-
   /* =========================
-     샘플 가격 비교 결과
+     비교 결과
   ========================= */
 
   function showComparison() {
@@ -926,72 +873,72 @@
         "resultArea"
       );
 
+    const platform =
+      currentProduct.platform ||
+      "SHOP";
+
+    const platformLabel =
+      platformKoreanName(
+        platform
+      );
+
+    const price =
+      currentProduct.formattedPrice ||
+      "가격 확인 필요";
+
+    const purchaseUrl =
+      currentProduct.purchaseUrl ||
+      currentProduct.originalUrl ||
+      "#";
 
     resultArea.style.display =
       "block";
 
-
     resultArea.innerHTML = `
 
       <div class="section-title">
-        가격을 비교했어요
+        비교 준비가 완료됐어요
       </div>
-
 
       <div class="section-description">
-
-        현재는 가격 비교 UI 테스트를 위해
-        일부 샘플 데이터를 사용하고 있어요.
-
+        현재 입력한 상품의 실제 연결 정보입니다.
       </div>
-
 
       <div class="result-summary">
 
         <strong>
-          현재 샘플 기준 W컨셉이 가장 저렴해요.
+          ${escapeHTML(platformLabel)} 상품을 확인했어요.
         </strong>
 
         <p>
-          실제 플랫폼 자동 비교 기능은
-          다음 단계에서 연결합니다.
+          다음 단계에서는 이 상품을 기준으로
+          다른 쇼핑몰의 동일 상품을 찾아
+          실제 가격 비교 결과를 붙일 거예요.
         </p>
 
       </div>
 
-
-      <!-- W CONCEPT -->
-
       <div class="result-card best">
 
         <div class="best-badge">
-          BEST · 최저가
+          기준 상품
         </div>
 
         <div class="platform-name">
-          W CONCEPT
+          ${escapeHTML(platform)}
         </div>
 
         <div class="price-row">
 
           <span class="price-label">
-            판매가
+            상품명
           </span>
 
           <span>
-            38,000원
-          </span>
-
-        </div>
-
-        <div class="price-row">
-
-          <span class="price-label">
-            쿠폰 할인
-          </span>
-
-          <span>
-            -5,000원
+            ${escapeHTML(
+              currentProduct.productName ||
+              `상품번호 ${currentProduct.productId || "-"}`
+            )}
           </span>
 
         </div>
@@ -999,11 +946,11 @@
         <div class="price-row">
 
           <span class="price-label">
-            배송비
+            현재 가격
           </span>
 
           <span>
-            무료
+            ${escapeHTML(price)}
           </span>
 
         </div>
@@ -1011,145 +958,40 @@
         <div class="final-price-box">
 
           <span class="final-label">
-            예상 결제가
+            현재 연결
           </span>
 
           <span class="final-price">
-            33,000원
+            완료
           </span>
 
         </div>
+
+        <a
+          class="shop-link"
+          href="${escapeAttribute(purchaseUrl)}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ${escapeHTML(platformLabel)}에서 바로 보기 →
+        </a>
 
       </div>
-
-
-      <!-- MUSINSA -->
-
-      <div class="result-card">
-
-        <div class="platform-name">
-          MUSINSA
-        </div>
-
-        <div class="price-row">
-
-          <span class="price-label">
-            현재 표시가
-          </span>
-
-          <span>
-            ${TEST_PRODUCT.price}
-          </span>
-
-        </div>
-
-        <div class="price-row">
-
-          <span class="price-label">
-            상품
-          </span>
-
-          <span>
-            확인 완료
-          </span>
-
-        </div>
-
-        <div class="final-price-box">
-
-          <span class="final-label">
-            현재 확인 가격
-          </span>
-
-          <span class="final-price">
-            ${TEST_PRODUCT.price}
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <!-- 29CM -->
-
-      <div class="result-card">
-
-        <div class="platform-name">
-          29CM
-        </div>
-
-        <div class="price-row">
-
-          <span class="price-label">
-            판매가
-          </span>
-
-          <span>
-            39,000원
-          </span>
-
-        </div>
-
-        <div class="price-row">
-
-          <span class="price-label">
-            쿠폰 할인
-          </span>
-
-          <span>
-            없음
-          </span>
-
-        </div>
-
-        <div class="price-row">
-
-          <span class="price-label">
-            배송비
-          </span>
-
-          <span>
-            무료
-          </span>
-
-        </div>
-
-        <div class="final-price-box">
-
-          <span class="final-label">
-            예상 결제가
-          </span>
-
-          <span class="final-price">
-            39,000원
-          </span>
-
-        </div>
-
-      </div>
-
 
       <div class="sample-notice">
 
-        ⚠️ W컨셉과 29CM 가격은 현재 기능 테스트용 샘플입니다.
-        실제 가격으로 오해하지 마세요.
-        다음 단계에서 실제 동일 상품 검색을 연결합니다.
+        현재는 입력한 원본 쇼핑몰의 상품 연결까지 완료된 상태예요.
+        무신사 · 29CM · W컨셉의 동일 상품 자동 탐색과
+        실구매가 비교는 다음 단계에서 추가합니다.
 
       </div>
-
     `;
 
-
     resultArea.scrollIntoView({
-
       behavior: "smooth",
-
       block: "start"
-
     });
-
   }
-
 
 
   /* =========================
@@ -1160,30 +1002,24 @@
 
     hideAll();
 
+    currentProduct =
+      null;
 
     const input =
       document.getElementById(
         "urlInput"
       );
 
-
     input.value =
       "";
 
-
     input.focus();
 
-
     window.scrollTo({
-
       top: 250,
-
       behavior: "smooth"
-
     });
-
   }
-
 
 
   /* =========================
@@ -1197,16 +1033,12 @@
         "errorArea"
       );
 
-
     area.innerText =
       message;
 
-
     area.style.display =
       "block";
-
   }
-
 
 
   /* =========================
@@ -1220,60 +1052,127 @@
     ).style.display =
       "none";
 
-
     document.getElementById(
       "productLoading"
     ).style.display =
       "none";
-
 
     document.getElementById(
       "confirmArea"
     ).style.display =
       "none";
 
-
     document.getElementById(
       "comparisonLoading"
     ).style.display =
       "none";
-
 
     const resultArea =
       document.getElementById(
         "resultArea"
       );
 
-
     resultArea.style.display =
       "none";
 
-
     resultArea.innerHTML =
       "";
-
   }
 
 
+  /* =========================
+     플랫폼명
+  ========================= */
 
-  /*
-   * Enter 키로도 실행
-   */
+  function platformKoreanName(
+    platform
+  ) {
+
+    if (
+      platform === "MUSINSA"
+    ) {
+      return "무신사";
+    }
+
+    if (
+      platform === "29CM"
+    ) {
+      return "29CM";
+    }
+
+    if (
+      platform === "W CONCEPT"
+    ) {
+      return "W컨셉";
+    }
+
+    return platform ||
+      "쇼핑몰";
+  }
+
+
+  /* =========================
+     HTML 보호
+  ========================= */
+
+  function escapeHTML(
+    value
+  ) {
+
+    return String(
+      value ?? ""
+    )
+      .replaceAll(
+        "&",
+        "&amp;"
+      )
+      .replaceAll(
+        "<",
+        "&lt;"
+      )
+      .replaceAll(
+        ">",
+        "&gt;"
+      )
+      .replaceAll(
+        '"',
+        "&quot;"
+      )
+      .replaceAll(
+        "'",
+        "&#039;"
+      );
+  }
+
+
+  function escapeAttribute(
+    value
+  ) {
+
+    return escapeHTML(
+      value
+    );
+  }
+
+
+  /* =========================
+     Enter 키
+  ========================= */
 
   document
-    .getElementById("urlInput")
+    .getElementById(
+      "urlInput"
+    )
     .addEventListener(
       "keydown",
-      function(event) {
+      function (event) {
 
         if (
           event.key === "Enter"
         ) {
 
           checkProduct();
-
         }
-
       }
     );
 
