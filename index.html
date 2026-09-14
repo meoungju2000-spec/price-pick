@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>PRICE PICK - 최저가 찾아보기</title>
+  <title>PRICE PICK - 더 싼 곳 찾아보기</title>
 
   <style>
     * {
@@ -40,6 +40,10 @@
     a {
       color: inherit;
       text-decoration: none;
+    }
+
+    .hidden {
+      display: none !important;
     }
 
     /* ================================
@@ -88,7 +92,7 @@
     }
 
     .hero {
-      max-width: 760px;
+      max-width: 780px;
       margin: 0 auto;
       text-align: center;
     }
@@ -110,16 +114,18 @@
     }
 
     .hero h1 {
-      font-size: 44px;
+      font-size: 46px;
       line-height: 1.2;
       letter-spacing: -2px;
-      margin-bottom: 16px;
+
+      margin-bottom: 18px;
     }
 
     .hero-description {
       color: #747474;
       font-size: 17px;
       line-height: 1.7;
+
       margin-bottom: 34px;
     }
 
@@ -129,8 +135,8 @@
 
     .search-box {
       width: 100%;
-      background: #ffffff;
 
+      background: #ffffff;
       border: 1px solid #e6e6e6;
       border-radius: 18px;
 
@@ -151,7 +157,7 @@
       border: none;
       outline: none;
 
-      padding: 14px 14px;
+      padding: 14px;
 
       font-size: 15px;
       color: #222222;
@@ -208,17 +214,13 @@
       margin: 48px auto 0;
     }
 
-    .hidden {
-      display: none !important;
-    }
-
     .loading-card,
     .error-card {
       background: #ffffff;
       border: 1px solid #ececec;
       border-radius: 18px;
 
-      padding: 36px 28px;
+      padding: 38px 28px;
 
       text-align: center;
     }
@@ -294,53 +296,97 @@
       margin: 56px auto 0;
     }
 
-    .result-header {
+    .result-summary {
       margin-bottom: 24px;
+
+      padding: 28px;
+
+      border-radius: 20px;
+
+      background: #ffffff;
+      border: 1px solid #e9e9e9;
+    }
+
+    .result-summary.success {
+      border-color: #bfe8cf;
+      background: #f5fcf8;
+    }
+
+    .result-summary.current-best {
+      border-color: #dcdcdc;
+      background: #ffffff;
     }
 
     .result-eyebrow {
       color: #18a558;
-      font-size: 13px;
-      font-weight: 900;
 
-      margin-bottom: 8px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.4px;
+
+      margin-bottom: 9px;
     }
 
     .result-title {
-      font-size: 28px;
+      font-size: 29px;
       letter-spacing: -1px;
       line-height: 1.35;
 
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .result-description {
-      color: #7d7d7d;
+      color: #747474;
+
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.65;
+    }
+
+    .saving-text {
+      display: inline-block;
+
+      margin-top: 14px;
+      padding: 8px 12px;
+
+      background: #e8f7ee;
+      color: #15894a;
+
+      border-radius: 999px;
+
+      font-size: 13px;
+      font-weight: 900;
     }
 
     /* ================================
-       BASE PRODUCT
+       CURRENT PRODUCT
     ================================ */
 
-    .base-product {
+    .section-label {
+      margin-bottom: 10px;
+
+      font-size: 13px;
+      font-weight: 900;
+
+      color: #666666;
+    }
+
+    .current-product {
       display: flex;
       align-items: center;
       gap: 18px;
 
       padding: 18px;
 
-      margin-bottom: 28px;
+      margin-bottom: 32px;
 
       background: #ffffff;
       border: 1px solid #ececec;
       border-radius: 18px;
     }
 
-    .base-image {
-      width: 92px;
-      height: 112px;
+    .current-image {
+      width: 88px;
+      height: 108px;
 
       flex-shrink: 0;
 
@@ -350,19 +396,21 @@
       background: #f2f2f2;
     }
 
-    .base-info {
+    .current-info {
+      flex: 1;
       min-width: 0;
     }
 
-    .base-brand {
-      color: #888888;
-      font-size: 12px;
-      font-weight: 700;
+    .current-platform {
+      color: #777777;
 
-      margin-bottom: 6px;
+      font-size: 12px;
+      font-weight: 800;
+
+      margin-bottom: 5px;
     }
 
-    .base-name {
+    .current-name {
       font-size: 16px;
       font-weight: 800;
       line-height: 1.45;
@@ -372,14 +420,56 @@
       overflow-wrap: anywhere;
     }
 
-    .base-code {
+    .current-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .current-price {
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .current-code {
       color: #999999;
       font-size: 12px;
     }
 
     /* ================================
-       SELLER CARDS
+       ALTERNATIVES
     ================================ */
+
+    .alternatives-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      gap: 16px;
+
+      margin-bottom: 14px;
+    }
+
+    .alternatives-title {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    .alternatives-description {
+      margin-top: 5px;
+
+      color: #8a8a8a;
+      font-size: 13px;
+    }
+
+    .seller-count {
+      color: #999999;
+      font-size: 12px;
+
+      white-space: nowrap;
+    }
 
     .seller-list {
       display: grid;
@@ -417,7 +507,7 @@
         0 8px 24px rgba(0, 0, 0, 0.045);
     }
 
-    .seller-card.best {
+    .seller-card.cheaper {
       border: 2px solid #18a558;
 
       box-shadow:
@@ -426,6 +516,7 @@
 
     .best-badge {
       position: absolute;
+
       top: -11px;
       left: 18px;
 
@@ -438,7 +529,6 @@
 
       font-size: 11px;
       font-weight: 900;
-      letter-spacing: 0.3px;
     }
 
     .seller-platform {
@@ -454,16 +544,26 @@
       font-size: 13px;
       line-height: 1.5;
 
-      margin-bottom: 6px;
+      margin-bottom: 7px;
 
       overflow-wrap: anywhere;
     }
 
-    .seller-match {
-      color: #a0a0a0;
+    .difference {
+      font-size: 12px;
+      font-weight: 800;
+    }
 
-      font-size: 11px;
-      line-height: 1.5;
+    .difference.cheaper {
+      color: #15914e;
+    }
+
+    .difference.expensive {
+      color: #9b9b9b;
+    }
+
+    .difference.same {
+      color: #777777;
     }
 
     .seller-right {
@@ -473,7 +573,7 @@
     }
 
     .price-area {
-      min-width: 110px;
+      min-width: 120px;
       text-align: right;
     }
 
@@ -489,7 +589,7 @@
       letter-spacing: -0.5px;
     }
 
-    .seller-card.best .price {
+    .seller-card.cheaper .price {
       color: #15914e;
     }
 
@@ -504,7 +604,7 @@
       align-items: center;
       justify-content: center;
 
-      min-width: 116px;
+      min-width: 118px;
 
       padding: 13px 16px;
 
@@ -519,8 +619,34 @@
       white-space: nowrap;
     }
 
-    .seller-card.best .buy-button {
+    .seller-card.cheaper .buy-button {
       background: #18a558;
+    }
+
+    /* ================================
+       NO ALTERNATIVE
+    ================================ */
+
+    .no-alternative {
+      padding: 28px;
+
+      background: #ffffff;
+      border: 1px solid #ececec;
+      border-radius: 18px;
+
+      text-align: center;
+    }
+
+    .no-alternative-title {
+      font-size: 17px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .no-alternative-text {
+      color: #858585;
+      font-size: 13px;
+      line-height: 1.65;
     }
 
     /* ================================
@@ -547,6 +673,7 @@
 
     .footer {
       padding: 30px 24px 42px;
+
       text-align: center;
 
       color: #aaaaaa;
@@ -560,7 +687,7 @@
     @media (max-width: 700px) {
 
       .header-inner {
-        padding: 18px 18px;
+        padding: 18px;
       }
 
       .header-text {
@@ -568,9 +695,7 @@
       }
 
       .container {
-        padding:
-          52px 18px
-          80px;
+        padding: 52px 18px 80px;
       }
 
       .hero h1 {
@@ -601,17 +726,29 @@
         margin-top: 42px;
       }
 
+      .result-summary {
+        padding: 22px;
+      }
+
       .result-title {
         font-size: 24px;
       }
 
-      .base-product {
+      .current-product {
         align-items: flex-start;
       }
 
-      .base-image {
-        width: 78px;
-        height: 96px;
+      .current-image {
+        width: 76px;
+        height: 94px;
+      }
+
+      .alternatives-header {
+        display: block;
+      }
+
+      .seller-count {
+        margin-top: 6px;
       }
 
       .seller-card {
@@ -648,7 +785,7 @@
       </div>
 
       <div class="header-text">
-        패션 최저가 비교
+        지금보다 더 싼 곳 찾기
       </div>
 
     </div>
@@ -666,13 +803,13 @@
       </div>
 
       <h1>
-        사고 싶은 상품,<br />
-        어디가 제일 쌀까요?
+        지금 보고 있는 상품,<br />
+        더 싸게 살 수 있을까요?
       </h1>
 
       <p class="hero-description">
-        상품 링크 하나만 넣어주세요.<br />
-        같은 상품을 찾아 지금 확인 가능한 가격을 비교해드려요.
+        상품 링크만 붙여넣어 주세요.<br />
+        같은 상품을 다른 판매처에서 찾아 더 저렴한 곳이 있는지 확인해드려요.
       </p>
 
 
@@ -682,7 +819,7 @@
           id="productUrl"
           class="url-input"
           type="url"
-          placeholder="무신사 · 29CM · W컨셉 상품 URL을 붙여넣어 주세요"
+          placeholder="지금 보고 있는 상품 URL을 붙여넣어 주세요"
           autocomplete="off"
         />
 
@@ -691,15 +828,14 @@
           class="search-button"
           type="button"
         >
-          최저가 찾아보기
+          더 싼 곳 찾아보기
         </button>
 
       </div>
 
 
       <p class="supported">
-        현재 무신사 · 29CM · W컨셉과 브랜드 공식몰의
-        공개 상품 가격을 비교해요.
+        현재 무신사 · 29CM · W컨셉 · 브랜드 공식몰을 비교해요.
       </p>
 
     </section>
@@ -717,12 +853,12 @@
         <div class="spinner"></div>
 
         <div class="loading-title">
-          최저가를 찾고 있어요
+          다른 곳 가격을 확인하고 있어요
         </div>
 
         <div class="loading-description">
-          동일 상품을 판매하는 플랫폼과 공식몰의<br />
-          가격을 확인하고 있어요.
+          동일 상품을 판매하는 플랫폼과 공식몰을 찾아<br />
+          지금 보고 있는 가격과 비교하고 있어요.
         </div>
 
       </div>
@@ -738,7 +874,7 @@
         </div>
 
         <div class="error-title">
-          상품을 찾지 못했어요
+          상품을 확인하지 못했어요
         </div>
 
         <div
@@ -760,67 +896,125 @@
       class="result-section hidden"
     >
 
-      <div class="result-header">
+      <!-- SUMMARY -->
+
+      <div
+        id="resultSummary"
+        class="result-summary"
+      >
 
         <div class="result-eyebrow">
-          PRICE COMPARISON
+          PRICE PICK RESULT
         </div>
 
         <h2
           id="resultTitle"
           class="result-title"
-        >
-          지금 가장 저렴한 곳을 찾았어요.
-        </h2>
+        ></h2>
 
         <p
           id="resultDescription"
           class="result-description"
-        >
-          확인 가능한 판매처의 가격을 비교했어요.
-        </p>
+        ></p>
+
+        <div
+          id="savingText"
+          class="saving-text hidden"
+        ></div>
 
       </div>
 
 
-      <!-- BASE PRODUCT -->
+      <!-- CURRENT PRODUCT -->
 
-      <div class="base-product">
+      <div class="section-label">
+        현재 보고 있는 상품
+      </div>
+
+      <div class="current-product">
 
         <img
-          id="baseImage"
-          class="base-image"
+          id="currentImage"
+          class="current-image"
           alt="상품 이미지"
         />
 
-        <div class="base-info">
+        <div class="current-info">
 
           <div
-            id="baseBrand"
-            class="base-brand"
+            id="currentPlatform"
+            class="current-platform"
           ></div>
 
           <div
-            id="baseName"
-            class="base-name"
+            id="currentName"
+            class="current-name"
           ></div>
 
-          <div
-            id="baseCode"
-            class="base-code"
-          ></div>
+          <div class="current-meta">
+
+            <span
+              id="currentPrice"
+              class="current-price"
+            ></span>
+
+            <span
+              id="currentCode"
+              class="current-code"
+            ></span>
+
+          </div>
 
         </div>
 
       </div>
 
 
-      <!-- SELLERS -->
+      <!-- ALTERNATIVES -->
+
+      <div class="alternatives-header">
+
+        <div>
+
+          <div class="alternatives-title">
+            다른 판매처 비교
+          </div>
+
+          <div class="alternatives-description">
+            같은 상품으로 확인된 판매처만 보여드려요.
+          </div>
+
+        </div>
+
+        <div
+          id="sellerCount"
+          class="seller-count"
+        ></div>
+
+      </div>
+
 
       <div
         id="sellerList"
         class="seller-list"
       ></div>
+
+
+      <div
+        id="noAlternative"
+        class="no-alternative hidden"
+      >
+
+        <div class="no-alternative-title">
+          다른 판매처를 찾지 못했어요
+        </div>
+
+        <div class="no-alternative-text">
+          현재 확인 가능한 판매처에서는<br />
+          동일 상품을 추가로 찾지 못했어요.
+        </div>
+
+      </div>
 
 
       <!-- NOTICE -->
@@ -855,74 +1049,61 @@
     ================================================ */
 
     const productUrlInput =
-      document.getElementById(
-        "productUrl"
-      );
+      document.getElementById("productUrl");
 
     const searchButton =
-      document.getElementById(
-        "searchButton"
-      );
+      document.getElementById("searchButton");
 
     const loading =
-      document.getElementById(
-        "loading"
-      );
+      document.getElementById("loading");
 
     const errorBox =
-      document.getElementById(
-        "error"
-      );
+      document.getElementById("error");
 
     const errorMessage =
-      document.getElementById(
-        "errorMessage"
-      );
+      document.getElementById("errorMessage");
 
     const resultSection =
-      document.getElementById(
-        "resultSection"
-      );
+      document.getElementById("resultSection");
+
+    const resultSummary =
+      document.getElementById("resultSummary");
 
     const resultTitle =
-      document.getElementById(
-        "resultTitle"
-      );
+      document.getElementById("resultTitle");
 
     const resultDescription =
-      document.getElementById(
-        "resultDescription"
-      );
+      document.getElementById("resultDescription");
 
-    const baseImage =
-      document.getElementById(
-        "baseImage"
-      );
+    const savingText =
+      document.getElementById("savingText");
 
-    const baseBrand =
-      document.getElementById(
-        "baseBrand"
-      );
+    const currentImage =
+      document.getElementById("currentImage");
 
-    const baseName =
-      document.getElementById(
-        "baseName"
-      );
+    const currentPlatform =
+      document.getElementById("currentPlatform");
 
-    const baseCode =
-      document.getElementById(
-        "baseCode"
-      );
+    const currentName =
+      document.getElementById("currentName");
+
+    const currentPrice =
+      document.getElementById("currentPrice");
+
+    const currentCode =
+      document.getElementById("currentCode");
+
+    const sellerCount =
+      document.getElementById("sellerCount");
 
     const sellerList =
-      document.getElementById(
-        "sellerList"
-      );
+      document.getElementById("sellerList");
+
+    const noAlternative =
+      document.getElementById("noAlternative");
 
     const notice =
-      document.getElementById(
-        "notice"
-      );
+      document.getElementById("notice");
 
 
     /* ================================================
@@ -939,9 +1120,7 @@
       "keydown",
       function(event) {
 
-        if (
-          event.key === "Enter"
-        ) {
+        if (event.key === "Enter") {
           comparePrice();
         }
 
@@ -969,9 +1148,7 @@
       }
 
 
-      if (
-        !isValidUrl(productUrl)
-      ) {
+      if (!isValidUrl(productUrl)) {
 
         showError(
           "올바른 상품 URL을 입력해 주세요."
@@ -1023,7 +1200,10 @@
         }
 
 
-        renderResult(data);
+        renderResult(
+          data,
+          productUrl
+        );
 
 
       } catch (error) {
@@ -1037,6 +1217,9 @@
 
         searchButton.disabled =
           false;
+
+        searchButton.textContent =
+          "더 싼 곳 찾아보기";
 
       }
 
@@ -1074,7 +1257,10 @@
        RESULT
     ================================================ */
 
-    function renderResult(data) {
+    function renderResult(
+      data,
+      inputUrl
+    ) {
 
       loading.classList.add(
         "hidden"
@@ -1084,133 +1270,123 @@
         "hidden"
       );
 
-
-      searchButton.disabled =
-        false;
-
-      searchButton.textContent =
-        "최저가 찾아보기";
+      resultSection.classList.remove(
+        "hidden"
+      );
 
 
       const base =
         data.baseProduct || {};
 
 
-      resultTitle.textContent =
-        data.message ||
-        "가격 비교 결과예요.";
-
-
-      if (
-        data.pricedSellerCount >= 2
-      ) {
-
-        resultDescription.textContent =
-          `${data.pricedSellerCount}곳의 확인 가능한 가격을 비교했어요.`;
-
-      } else {
-
-        resultDescription.textContent =
-          "일부 판매처에서는 같은 상품을 찾지 못했어요. 확인 가능한 판매처 기준으로 보여드려요.";
-
-      }
-
-
-      /* BASE PRODUCT */
-
-      if (base.image) {
-
-        baseImage.src =
-          base.image;
-
-        baseImage.style.display =
-          "block";
-
-      } else {
-
-        baseImage.removeAttribute(
-          "src"
-        );
-
-        baseImage.style.display =
-          "none";
-
-      }
-
-
-      baseBrand.textContent =
-        base.brand ||
-        platformName(
-          base.platform
-        );
-
-
-      baseName.textContent =
-        base.productName ||
-        "상품명 확인 중";
-
-
-      baseCode.textContent =
-        base.productCode
-          ? `품번 ${base.productCode}`
-          : "";
-
-
-      /* SELLERS */
-
-      sellerList.innerHTML =
-        "";
-
-
-      const results =
-        Array.isArray(
-          data.results
-        )
+      const allResults =
+        Array.isArray(data.results)
           ? data.results
           : [];
 
 
-      const cheapestUrl =
-        data.cheapest?.url ||
-        null;
+      /*
+        입력한 기준 판매처와
+        다른 판매처를 분리
+      */
+
+      const sourceResult =
+        findSourceResult(
+          allResults,
+          inputUrl
+        );
 
 
-      results.forEach(
-        function(item) {
+      const alternatives =
+        allResults.filter(
+          function(item) {
 
-          const isBest =
-            cheapestUrl &&
-            normalizeUrl(
-              item.url
-            ) ===
-            normalizeUrl(
-              cheapestUrl
+            return !sameUrl(
+              item.url,
+              inputUrl
             );
 
+          }
+        );
 
-          const card =
-            createSellerCard(
-              item,
-              isBest
+
+      /*
+        현재 가격
+      */
+
+      const sourcePrice =
+        validNumber(
+          sourceResult?.price
+        )
+          ? Number(sourceResult.price)
+          : validNumber(base.price)
+            ? Number(base.price)
+            : null;
+
+
+      /*
+        다른 판매처 중
+        신뢰 가능한 가격만 추출
+      */
+
+      const pricedAlternatives =
+        alternatives.filter(
+          function(item) {
+
+            return (
+              validNumber(item.price) &&
+              (
+                item.priceConfidence === "high" ||
+                item.priceConfidence === "medium"
+              )
             );
 
+          }
+        );
 
-          sellerList.appendChild(
-            card
+
+      pricedAlternatives.sort(
+        function(a, b) {
+
+          return (
+            Number(a.price) -
+            Number(b.price)
           );
 
         }
       );
 
 
+      const bestAlternative =
+        pricedAlternatives.length
+          ? pricedAlternatives[0]
+          : null;
+
+
+      renderSummary(
+        sourcePrice,
+        bestAlternative,
+        pricedAlternatives.length,
+        alternatives.length
+      );
+
+
+      renderCurrentProduct(
+        base,
+        sourceResult,
+        sourcePrice
+      );
+
+
+      renderAlternatives(
+        alternatives,
+        sourcePrice
+      );
+
+
       notice.textContent =
         data.notice ||
         "공개 상품 페이지에서 확인 가능한 가격을 기준으로 비교합니다.";
-
-
-      resultSection.classList.remove(
-        "hidden"
-      );
 
 
       resultSection.scrollIntoView({
@@ -1222,13 +1398,327 @@
 
 
     /* ================================================
+       SUMMARY
+    ================================================ */
+
+    function renderSummary(
+      sourcePrice,
+      bestAlternative,
+      pricedAlternativeCount,
+      alternativeCount
+    ) {
+
+      resultSummary.classList.remove(
+        "success",
+        "current-best"
+      );
+
+      savingText.classList.add(
+        "hidden"
+      );
+
+
+      /*
+        현재 가격을 읽지 못한 경우
+      */
+
+      if (!validNumber(sourcePrice)) {
+
+        resultTitle.textContent =
+          "다른 판매처의 가격을 확인했어요.";
+
+        resultDescription.textContent =
+          "현재 보고 있는 상품의 가격은 정확히 확인하지 못해 가격 차이는 계산하지 않았어요.";
+
+        return;
+      }
+
+
+      /*
+        다른 가격 확인 가능한 판매처 없음
+      */
+
+      if (!bestAlternative) {
+
+        resultSummary.classList.add(
+          "current-best"
+        );
+
+        resultTitle.textContent =
+          "현재 확인 가능한 곳에서는 더 싼 곳을 찾지 못했어요.";
+
+        if (alternativeCount > 0) {
+
+          resultDescription.textContent =
+            "같은 상품을 판매하는 곳은 찾았지만, 비교 가능한 가격을 확인하지 못했어요.";
+
+        } else {
+
+          resultDescription.textContent =
+            "현재 검색 결과에서는 동일 상품을 판매하는 다른 판매처가 확인되지 않았어요.";
+
+        }
+
+        return;
+      }
+
+
+      const alternativePrice =
+        Number(
+          bestAlternative.price
+        );
+
+
+      /*
+        다른 판매처가 더 쌈
+      */
+
+      if (
+        alternativePrice <
+        sourcePrice
+      ) {
+
+        const saving =
+          sourcePrice -
+          alternativePrice;
+
+
+        resultSummary.classList.add(
+          "success"
+        );
+
+
+        resultTitle.textContent =
+          "더 저렴한 곳을 찾았어요.";
+
+
+        resultDescription.textContent =
+          `${bestAlternative.displayName || platformName(bestAlternative.platform)}에서 더 낮은 가격이 확인됐어요.`;
+
+
+        savingText.textContent =
+          `현재보다 ${formatPrice(saving)} 절약 가능`;
+
+
+        savingText.classList.remove(
+          "hidden"
+        );
+
+        return;
+      }
+
+
+      /*
+        동일 가격
+      */
+
+      if (
+        alternativePrice ===
+        sourcePrice
+      ) {
+
+        resultSummary.classList.add(
+          "current-best"
+        );
+
+        resultTitle.textContent =
+          "현재 가격과 같은 판매처가 있어요.";
+
+
+        resultDescription.textContent =
+          "더 낮은 가격은 찾지 못했어요. 지금 보고 있는 곳에서 구매해도 괜찮아요.";
+
+        return;
+      }
+
+
+      /*
+        현재 판매처가 가장 저렴
+      */
+
+      resultSummary.classList.add(
+        "current-best"
+      );
+
+
+      resultTitle.textContent =
+        "지금 보고 있는 곳이 가장 저렴해요 🎉";
+
+
+      const difference =
+        alternativePrice -
+        sourcePrice;
+
+
+      resultDescription.textContent =
+        `확인된 다른 판매처보다 최소 ${formatPrice(difference)} 저렴해요. 지금 보고 있는 곳에서 구매하는 편이 유리해요.`;
+
+    }
+
+
+    /* ================================================
+       CURRENT PRODUCT
+    ================================================ */
+
+    function renderCurrentProduct(
+      base,
+      sourceResult,
+      sourcePrice
+    ) {
+
+      const image =
+        base.image ||
+        sourceResult?.image;
+
+
+      if (image) {
+
+        currentImage.src =
+          image;
+
+        currentImage.style.display =
+          "block";
+
+      } else {
+
+        currentImage.removeAttribute(
+          "src"
+        );
+
+        currentImage.style.display =
+          "none";
+
+      }
+
+
+      currentPlatform.textContent =
+        sourceResult?.displayName ||
+        platformName(
+          base.platform
+        );
+
+
+      currentName.textContent =
+        base.productName ||
+        sourceResult?.productName ||
+        "상품명 확인 중";
+
+
+      currentPrice.textContent =
+        validNumber(sourcePrice)
+          ? formatPrice(sourcePrice)
+          : "가격 확인 필요";
+
+
+      currentCode.textContent =
+        base.productCode
+          ? `품번 ${base.productCode}`
+          : "";
+
+    }
+
+
+    /* ================================================
+       ALTERNATIVES
+    ================================================ */
+
+    function renderAlternatives(
+      alternatives,
+      sourcePrice
+    ) {
+
+      sellerList.innerHTML =
+        "";
+
+
+      noAlternative.classList.add(
+        "hidden"
+      );
+
+
+      if (
+        alternatives.length === 0
+      ) {
+
+        sellerCount.textContent =
+          "0곳";
+
+        noAlternative.classList.remove(
+          "hidden"
+        );
+
+        return;
+      }
+
+
+      sellerCount.textContent =
+        `${alternatives.length}곳 확인`;
+
+
+      /*
+        가격 있는 판매처부터 정렬
+      */
+
+      alternatives.sort(
+        function(a, b) {
+
+          const aPrice =
+            validNumber(a.price)
+              ? Number(a.price)
+              : Infinity;
+
+          const bPrice =
+            validNumber(b.price)
+              ? Number(b.price)
+              : Infinity;
+
+          return aPrice - bPrice;
+
+        }
+      );
+
+
+      alternatives.forEach(
+        function(item) {
+
+          const card =
+            createSellerCard(
+              item,
+              sourcePrice
+            );
+
+
+          sellerList.appendChild(
+            card
+          );
+
+        }
+      );
+
+    }
+
+
+    /* ================================================
        SELLER CARD
     ================================================ */
 
     function createSellerCard(
       item,
-      isBest
+      sourcePrice
     ) {
+
+      const itemPrice =
+        validNumber(item.price)
+          ? Number(item.price)
+          : null;
+
+
+      const isCheaper =
+        validNumber(sourcePrice) &&
+        validNumber(itemPrice) &&
+        itemPrice <
+        Number(sourcePrice);
+
 
       const card =
         document.createElement(
@@ -1237,30 +1727,32 @@
 
 
       card.className =
-        isBest
-          ? "seller-card best"
+        isCheaper
+          ? "seller-card cheaper"
           : "seller-card";
 
 
-      if (isBest) {
+      if (isCheaper) {
 
-        const bestBadge =
+        const badge =
           document.createElement(
             "div"
           );
 
-        bestBadge.className =
+        badge.className =
           "best-badge";
 
-        bestBadge.textContent =
-          "BEST · 최저가";
+        badge.textContent =
+          "더 저렴해요";
 
         card.appendChild(
-          bestBadge
+          badge
         );
 
       }
 
+
+      /* LEFT */
 
       const left =
         document.createElement(
@@ -1296,17 +1788,17 @@
         "";
 
 
-      const match =
+      const difference =
         document.createElement(
           "div"
         );
 
-      match.className =
-        "seller-match";
 
-      match.textContent =
-        item.matchReason ||
-        "";
+      renderDifference(
+        difference,
+        sourcePrice,
+        itemPrice
+      );
 
 
       left.appendChild(
@@ -1318,9 +1810,11 @@
       );
 
       left.appendChild(
-        match
+        difference
       );
 
+
+      /* RIGHT */
 
       const right =
         document.createElement(
@@ -1349,9 +1843,7 @@
         "price-label";
 
       priceLabel.textContent =
-        isBest
-          ? "최저가"
-          : "확인 가격";
+        "확인 가격";
 
 
       const price =
@@ -1360,9 +1852,7 @@
         );
 
 
-      if (
-        item.formattedPrice
-      ) {
+      if (item.formattedPrice) {
 
         price.className =
           "price";
@@ -1397,31 +1887,31 @@
 
       if (item.url) {
 
-        const buyButton =
+        const button =
           document.createElement(
             "a"
           );
 
-        buyButton.className =
+        button.className =
           "buy-button";
 
-        buyButton.href =
+        button.href =
           item.url;
 
-        buyButton.target =
+        button.target =
           "_blank";
 
-        buyButton.rel =
+        button.rel =
           "noopener noreferrer";
 
-        buyButton.textContent =
-          isBest
-            ? "최저가로 구매"
+        button.textContent =
+          isCheaper
+            ? "더 싼 곳 보기"
             : "상품 보러가기";
 
 
         right.appendChild(
-          buyButton
+          button
         );
 
       }
@@ -1437,6 +1927,113 @@
 
 
       return card;
+
+    }
+
+
+    /* ================================================
+       DIFFERENCE
+    ================================================ */
+
+    function renderDifference(
+      element,
+      sourcePrice,
+      itemPrice
+    ) {
+
+      element.className =
+        "difference";
+
+
+      if (
+        !validNumber(sourcePrice) ||
+        !validNumber(itemPrice)
+      ) {
+
+        element.classList.add(
+          "same"
+        );
+
+        element.textContent =
+          "가격 차이 확인 필요";
+
+        return;
+      }
+
+
+      const difference =
+        Number(itemPrice) -
+        Number(sourcePrice);
+
+
+      if (difference < 0) {
+
+        element.classList.add(
+          "cheaper"
+        );
+
+        element.textContent =
+          `현재보다 ${formatPrice(Math.abs(difference))} 저렴해요`;
+
+        return;
+      }
+
+
+      if (difference > 0) {
+
+        element.classList.add(
+          "expensive"
+        );
+
+        element.textContent =
+          `현재보다 ${formatPrice(difference)} 비싸요`;
+
+        return;
+      }
+
+
+      element.classList.add(
+        "same"
+      );
+
+      element.textContent =
+        "현재와 같은 가격이에요";
+
+    }
+
+
+    /* ================================================
+       FIND SOURCE
+    ================================================ */
+
+    function findSourceResult(
+      results,
+      inputUrl
+    ) {
+
+      return (
+        results.find(
+          function(item) {
+
+            return sameUrl(
+              item.url,
+              inputUrl
+            );
+
+          }
+        ) ||
+        results.find(
+          function(item) {
+
+            return (
+              item.matchReason ===
+              "입력한 기준 상품"
+            );
+
+          }
+        ) ||
+        null
+      );
 
     }
 
@@ -1466,7 +2063,7 @@
         false;
 
       searchButton.textContent =
-        "최저가 찾아보기";
+        "더 싼 곳 찾아보기";
 
     }
 
@@ -1483,10 +2080,8 @@
           new URL(value);
 
         return (
-          url.protocol ===
-            "http:" ||
-          url.protocol ===
-            "https:"
+          url.protocol === "http:" ||
+          url.protocol === "https:"
         );
 
       } catch {
@@ -1498,35 +2093,71 @@
     }
 
 
-    function normalizeUrl(value) {
+    function sameUrl(a, b) {
 
-      if (!value) {
-        return "";
+      if (!a || !b) {
+        return false;
       }
 
       try {
 
-        const url =
-          new URL(value);
+        const aa =
+          new URL(a);
+
+        const bb =
+          new URL(b);
+
 
         return (
-          url.hostname
-            .replace(
-              /^www\./,
-              ""
-            ) +
-          url.pathname
-            .replace(
-              /\/+$/,
-              ""
-            )
+          aa.hostname
+            .replace(/^www\./, "")
+            .toLowerCase() ===
+          bb.hostname
+            .replace(/^www\./, "")
+            .toLowerCase()
+        ) &&
+        (
+          aa.pathname
+            .replace(/\/+$/, "") ===
+          bb.pathname
+            .replace(/\/+$/, "")
         );
 
       } catch {
 
-        return value;
+        return a === b;
 
       }
+
+    }
+
+
+    function validNumber(value) {
+
+      return (
+        value !== null &&
+        value !== undefined &&
+        value !== "" &&
+        Number.isFinite(
+          Number(value)
+        ) &&
+        Number(value) > 0
+      );
+
+    }
+
+
+    function formatPrice(value) {
+
+      if (!validNumber(value)) {
+        return "";
+      }
+
+      return (
+        Number(value)
+          .toLocaleString("ko-KR") +
+        "원"
+      );
 
     }
 
